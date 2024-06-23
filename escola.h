@@ -19,7 +19,7 @@ struct turma{
 char nome[2]; // 1A | 2B | 3A...
 int ano; // 1 | 2 | 3 
 struct aluno alunos[50];
-int qtdAlunos;
+int numAlunos;
 };
 
 struct escola{
@@ -40,7 +40,7 @@ void cadastrarAluno(struct aluno *a, char nome[], int idade, char cpf[]);
 void exibirAluno(struct aluno a);
 void listarAlunos(struct aluno *alunos, int numAlunos);
 // Funções para manipulação de turmas
-void criarTurma(struct turma *t);
+void criarTurma(struct turma *t, char nome[], int ano, struct aluno alunos[], int numAlunos);
 void exibirTurma(struct turma t);
 void listarTurmas(struct turma *turmas, int numTurmas);
 void adicionarAlunoTurma(struct turma *t, struct aluno a);

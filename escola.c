@@ -40,7 +40,7 @@ void listarFuncionarios(struct funcionario *funcionarios, int numFuncionarios)
   printf("%-20s %-10s %-15s %s\n", "Nome", "Idade", "CPF", "Cargo"); 
   printf("--------------------------------------------------------\n");
 
-  for (int i = 0; i < numFuncionarios; i++) 
+  for (int i = 0; i < numFuncionarios - 1; i++) 
   {
     printf("%-20s %-10d %-15s %s\n", 
            funcionarios[i].nome, 
@@ -51,7 +51,7 @@ void listarFuncionarios(struct funcionario *funcionarios, int numFuncionarios)
 }
 
 /* Funções para manipulação de alunos
-void cadastrarAluno(struct aluno *a);
+void cadastrarAluno(struct aluno *a, char nome[], int idade, char cpf[]);
 void exibirAluno(struct aluno a);
 void listarAlunos(struct aluno *alunos, int numAlunos);
 
@@ -83,11 +83,61 @@ void listarAlunos(struct aluno *alunos, int numAlunos)
   printf("%-20s %-10s %s\n", "Nome", "Idade", "CPF"); // Cabeçalho
   printf("-------------------------------------\n");
 
-  for (int i = 0; i < numAlunos; i++) 
+  for (int i = 0; i < numAlunos - 1; i++) 
   {
     printf("%-20s %-10d %s\n", 
                alunos[i].nome, 
                alunos[i].idade, 
                alunos[i].cpf);
     }
+}
+
+/* Funções para manipulação de turmas
+void criarTurma(struct turma *t, char nome[], int ano, struct aluno alunos[], int numAlunos);
+void exibirTurma(struct turma t);
+void listarTurmas(struct turma *turmas, int numTurmas);
+void adicionarAlunoTurma(struct turma *t, struct aluno a);
+
+
+struct turma{
+char nome[2]; // 1A | 2B | 3A...
+int ano; // 1 | 2 | 3 
+struct aluno alunos[50];
+int qtdAlunos;
+}; */
+
+void criarTurma(struct turma *t, char nome[], int ano, struct aluno alunos[], int numAlunos)
+{
+  strcpy(t -> nome, nome);
+  t -> ano = ano;
+  for (int i = 0; i < numAlunos - 1; i++)
+  {
+    t -> alunos[i] = alunos[i];
+  }
+  t -> numAlunos = numAlunos;
+}
+
+void exibirTurma(struct turma t)
+{
+  printf("Turma: %s\n", t.nome);
+  printf("Ano: %d\n", t.ano);
+  printf("Número de Alunos: %d\n", t.numAlunos); 
+  listarAlunos(t.alunos, t.numAlunos);
+}
+
+void listarTurmas(struct turma *turmas, int numTurmas)
+{
+  printf("Quantidade de turmas: %d\n", numTurmas);
+  for (int i = 0; i < numTurmas - 1; i++)
+  {
+  printf("Turma: %s\n", turmas[i].nome);
+  printf("Ano: %d\n", turmas[i].ano);
+  printf("Número de Alunos: %d\n", turmas[i].numAlunos); 
+  }
+}
+
+void adicionarAlunoTurma(struct turma *t, struct aluno a)
+{
+  t -> alunos[t -> numAlunos] = a;
+  t -> numAlunos++;
 }
