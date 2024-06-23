@@ -5,7 +5,7 @@
 /* Funções para manipulação de funcionários
 void cadastrarFuncionario(struct funcionario *f, char nome[], int idade, char cpf[], char cargo[]);
 void exibirFuncionario(struct funcionario f);
-void listarFuncionarios(struct funcionario *funcionarios, int numFuncionarios);
+void listaralunos(struct funcionario *funcionarios, int numFuncionarios);
 
 
 struct funcionario{
@@ -40,7 +40,7 @@ void listarFuncionarios(struct funcionario *funcionarios, int numFuncionarios)
   printf("%-20s %-10s %-15s %s\n", "Nome", "Idade", "CPF", "Cargo"); 
   printf("--------------------------------------------------------\n");
 
-  for (int i = 0; i < numFuncionarios - 1; i++) 
+  for (int i = 0; i < numFuncionarios; i++) 
   {
     printf("%-20s %-10d %-15s %s\n", 
            funcionarios[i].nome, 
@@ -83,7 +83,7 @@ void listarAlunos(struct aluno *alunos, int numAlunos)
   printf("%-20s %-10s %s\n", "Nome", "Idade", "CPF"); // Cabeçalho
   printf("-------------------------------------\n");
 
-  for (int i = 0; i < numAlunos - 1; i++) 
+  for (int i = 0; i < numAlunos; i++) 
   {
     printf("%-20s %-10d %s\n", 
                alunos[i].nome, 
@@ -110,7 +110,7 @@ void criarTurma(struct turma *t, char nome[], int ano, struct aluno alunos[], in
 {
   strcpy(t -> nome, nome);
   t -> ano = ano;
-  for (int i = 0; i < numAlunos - 1; i++)
+  for (int i = 0; i < numAlunos; i++)
   {
     t -> alunos[i] = alunos[i];
   }
@@ -121,18 +121,23 @@ void exibirTurma(struct turma t)
 {
   printf("Turma: %s\n", t.nome);
   printf("Ano: %d\n", t.ano);
-  printf("Número de Alunos: %d\n", t.numAlunos); 
+  printf("Numero de Alunos: %d\n", t.numAlunos); 
   listarAlunos(t.alunos, t.numAlunos);
 }
 
 void listarTurmas(struct turma *turmas, int numTurmas)
 {
-  printf("Quantidade de turmas: %d\n", numTurmas);
-  for (int i = 0; i < numTurmas - 1; i++)
-  {
-  printf("Turma: %s\n", turmas[i].nome);
-  printf("Ano: %d\n", turmas[i].ano);
-  printf("Número de Alunos: %d\n", turmas[i].numAlunos); 
+  printf("Quantidade de turmas: %d\n\n", numTurmas);
+  printf("%-20s %-10s %-15s\n", "Turma", "Ano", "Número de Alunos"); 
+  printf("---------------------------------------------------------\n");
+
+  for (int i = 0; i < numTurmas; i++) 
+  { 
+    printf("%-20s %-11d %-18d\n", 
+                turmas[i].nome,
+                turmas[i].ano, 
+                turmas[i].numAlunos);
+    printf("\n");  
   }
 }
 
@@ -140,4 +145,87 @@ void adicionarAlunoTurma(struct turma *t, struct aluno a)
 {
   t -> alunos[t -> numAlunos] = a;
   t -> numAlunos++;
+}
+
+/* Funções para manipulação de escolas
+void cadastrarEscola(struct escola *e, char nome[], char codigo[], char cnpj[], struct funcionario funcionarios[], struct turma turmas[], struct aluno alunos[]);
+void exibirEscola(struct escola e);
+void listarEscolas(struct escola *escolas, int numEscolas);
+void adicionarFuncionarioEscola(struct escola *e, struct funcionario f);
+void adicionarTurmaEscola(struct escola *e, struct turma t);
+
+
+struct escola{
+char nome[50];
+char codigo[10];
+char cnpj[18]; // XX.XXX.XXX/XXXX-XX 
+struct funcionario funcionarios[100];
+int numFuncionarios;
+struct turma turmas[20];
+int numTurmas;
+struct aluno alunos[1000];
+int numAlunos
+}; */
+
+void cadastrarEscola(struct escola *e, char nome[], char codigo[], char cnpj[], struct funcionario funcionarios[], int numFuncionarios, struct turma turmas[], int numTurmas, struct aluno alunos[],int numAlunos)
+{
+  strcpy(e -> nome, nome);
+  strcpy(e -> codigo, codigo);
+  strcpy(e -> cnpj, cnpj);
+  e ->numFuncionarios = numFuncionarios;
+  e ->numTurmas = numTurmas;
+  e ->numAlunos = numAlunos;
+
+  for (int i = 0; i < e->numFuncionarios; i++)
+  {
+  e->funcionarios[i] = funcionarios[i];
+  }
+  for (int i = 0; i < e->numTurmas; i++)
+  {
+  e->turmas[i] = turmas[i];
+  }
+  for (int i = 0; i < e->numFuncionarios; i++)
+  {
+  e->alunos[i] = alunos[i];
+  }
+}
+
+void exibirEscola(struct escola e)
+{
+  printf("Escola: %s\n", e.nome);
+  printf("Codigo: %s\n", e.codigo);
+  printf("CNPJ: %s\n", e.cnpj);
+  printf("Numero de Funcionarios: %d\n", e.numFuncionarios);
+  printf("Numero de Turmas: %d\n", e.numTurmas);
+  printf("Numero de Alunos: %d\n", e.numAlunos);
+}
+
+void listarEscolas(struct escola *escolas, int numEscolas)
+{
+  printf("Quantidade de escolas: %d\n\n", numEscolas);
+  printf("%-30s %-10s %-20s %-20s %-15s %s\n", "Nome", "Código", "CNPJ", "Funcionários", "Turmas", "Alunos");
+  printf("----------------------------------------------------------------------------------------------------------------\n");
+  
+  for (int i = 0; i < numEscolas - 1; i++) 
+  { 
+    printf("%-30s %-10s %-20s %-24d %-19d %-5d\n", 
+                    escolas[i].nome, 
+                    escolas[i].codigo, 
+                    escolas[i].cnpj, 
+                    escolas[i].numFuncionarios, 
+                    escolas[i].numTurmas, 
+                    escolas[i].numAlunos);
+    }
+}
+
+void adicionarFuncionarioEscola(struct escola *e, struct funcionario f)
+{
+  e -> funcionarios[e -> numFuncionarios] = f;
+  e -> numFuncionarios++;
+}
+
+void adicionarTurmaEscola(struct escola *e, struct turma t)
+{
+  e -> turmas[e -> numTurmas] = t;
+  e -> numTurmas++;
 }

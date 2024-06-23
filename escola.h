@@ -27,8 +27,11 @@ char nome[50];
 char codigo[10];
 char cnpj[18]; // XX.XXX.XXX/XXXX-XX 
 struct funcionario funcionarios[100];
+int numFuncionarios;
 struct turma turmas[20];
+int numTurmas;
 struct aluno alunos[1000];
+int numAlunos;
 };
 
 // Funções para manipulação de funcionários
@@ -45,7 +48,7 @@ void exibirTurma(struct turma t);
 void listarTurmas(struct turma *turmas, int numTurmas);
 void adicionarAlunoTurma(struct turma *t, struct aluno a);
 // Funções para manipulação de escolas
-void cadastrarEscola(struct escola *e);
+void cadastrarEscola(struct escola *e, char nome[], char codigo[], char cnpj[], struct funcionario funcionarios[], int numFuncionarios, struct turma turmas[], int numTurmas, struct aluno alunos[], int numAlunos);
 void exibirEscola(struct escola e);
 void listarEscolas(struct escola *escolas, int numEscolas);
 void adicionarFuncionarioEscola(struct escola *e, struct funcionario f);
