@@ -32,7 +32,7 @@ struct aluno alunos[1000];
 };
 
 // Funções para manipulação de funcionários
-void cadastrarFuncionario(struct funcionario *f);
+void cadastrarFuncionario(struct funcionario *f, char nome[], int idade, char cpf[], char cargo[]);
 void exibirFuncionario(struct funcionario f);
 void listarFuncionarios(struct funcionario *funcionarios, int numFuncionarios);
 // Funções para manipulação de alunos
