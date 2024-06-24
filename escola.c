@@ -2,6 +2,24 @@
 #include<string.h>
 #include "escola.h"
 
+// Geral pessoas
+#define _MAX_NOME 60
+#define _MAX_CPF 15
+#define _MAX_CARGO 30
+
+//Geral turmas
+#define _MAX_NOME_TURMA 2
+#define _MAX_ALUNO_TURMA 50
+
+//Geral escolas
+#define _MAX_NOME_ESCOLA 60
+#define _MAX_CODIGO_ESCOLA 10
+#define _MAX_CNPJ 18
+#define _MAX_FUNCIONARIO_ESCOLA 100
+#define _MAX_TURMAS_ESCOLA 20
+#define _MAX_ALUNOS_ESCOLA 1000
+
+
 /* Funções para manipulação de funcionários
 void cadastrarFuncionario(struct funcionario *f, char nome[], int idade, char cpf[], char cargo[]);
 void exibirFuncionario(struct funcionario f);
@@ -21,6 +39,7 @@ void cadastrarFuncionario(struct funcionario *f, char nome[], int idade, char cp
   f -> idade = idade;
   strcpy( f -> cpf, cpf);
   strcpy( f -> cargo, cargo);
+  printf("O funcionario foi cadastrado com sucesso!\n");
 }
 
 void exibirFuncionario(struct funcionario f)

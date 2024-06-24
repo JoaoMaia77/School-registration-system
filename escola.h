@@ -23,7 +23,7 @@ int numAlunos;
 };
 
 struct escola{
-char nome[50];
+char nome[60];
 char codigo[10];
 char cnpj[18]; // XX.XXX.XXX/XXXX-XX 
 struct funcionario funcionarios[100];
